@@ -4,10 +4,7 @@ sudo apt install vsftpd
 sudo cp /etc/vsftpd.conf /etc/vsftpd.conf.orig
 
 Step 2 — Opening the Firewall
-
 sudo ufw status
-In this case, only SSH is allowed through:
-
 sudo ufw allow 20/tcp
 sudo ufw allow 21/tcp
 sudo ufw allow 990/tcp
