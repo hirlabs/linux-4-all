@@ -1,13 +1,9 @@
 Step 1 — Installing vsftpd
-Let’s start by updating our package list and installing the vsftpd daemon:
 sudo apt update
 sudo apt install vsftpd
 sudo cp /etc/vsftpd.conf /etc/vsftpd.conf.orig
 
 Step 2 — Opening the Firewall
-Let’s check the firewall status to see if it’s enabled. If it is, we’ll ensure that FTP traffic is permitted so firewall rules don’t block our tests.
-
-Check the firewall status:
 
 sudo ufw status
 In this case, only SSH is allowed through:
