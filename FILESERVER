@@ -1,0 +1,17 @@
+# FILE SERVER CONFIGURATION
+Samba
+1. sudo apt install samba
+
+2. vim /etc/samba/samba.conf
+
+[storage]
+	comment= Shared Storage
+	path = /mnt/storage
+	read only = no
+	valid users = storageuser
+3. run garee si aad u hubiso inad samba sax ugu shubtay "testparm"
+4. sudo useradd storageuser
+5. sudo smbpasswd -a storageuser
+6. sudo ufw allow 139/tcp  for mac & linux clients  allow port 139
+7. sudo ufw allow 445/tcp  for windows client allow port 445
+8. sudo systemctl restart smbd 

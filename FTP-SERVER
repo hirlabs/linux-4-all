@@ -1,0 +1,50 @@
+git chsudo apt update && sudo apt install ffmpeg obs-studio
+
+git checkoiy hirtest
+
+FTP SERVER INSTALLATION
+ubuntu
+1. sudo apt install vsftpd
+centOS
+sudo yum install vsftpd
+
+Configuration file for centOS 
+/etc/vsftpd.conf
+Configuration file for centOS 
+/etc/vsftpd/vsftpd.conf
+
+sudo less -N /etc/vsftpd/vsftpd.conf
+sudo less -N /etc/vsftpd/vsftpd.conf
+
+/var/log/xferlog 4 centos
+/var/log/vsftpd.log 4 ubuntu 
+
+sudo systemctl status vsftpd
+sudo systemctl enable vsftpd
+sudo systemctl start vsftpd
+sudo systemctl stop vsftpd
+sudo systemctl restart vsftpd
+
+sudo firewall-cm --permenant --zone=public -- add-service=ftp
+sudo firewall-cm --reload
+sudo setsebool -P allow_ftpd_full_access 1
+
+if you don't have "afile & bfile" in your home use the follow command
+fallocate -l 30MB afile
+--------------------------------
+in the client side install ftp client 
+sudo yum install ftp
+sudo apt install ftp
+# Si aad ugu xirmato dheh "ftp" kadibna open qor adoo raacinaya server ip-ga
+
+#Managing users and access
+/etc/vsftpd/vsftpd.conf
+ uncomment "chroot_list_file=etc/vsftpd/chroot_list"
+- chroot_local_user=NO
+- chroot_list_enable=YES
+THEN create a user and give a password.
+go to sudo vim /etc/vsfpd/chroot_list to restric home access for ftp users
+sudo systemctl restart vsftpd
+sudo chmod u-w /home/ftpuser/files
+sudo chown ftpuser /home/ftpuser/files
+
