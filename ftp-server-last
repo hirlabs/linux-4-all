@@ -12,15 +12,15 @@ sudo ufw allow 40000:50000/tcp
 sudo ufw status
 
 Step 3 — Preparing the User Directory
-sudo adduser sammy
-sudo mkdir /home/sammy/ftp
-sudo chown nobody:nogroup /home/sammy/ftp
-sudo chmod a-w /home/sammy/ftp
-sudo ls -la /home/sammy/ftp
-sudo mkdir /home/sammy/ftp/files
-sudo chown sammy:sammy /home/sammy/ftp/files
-sudo ls -la /home/sammy/ftp
-echo "vsftpd test file" | sudo tee /home/sammy/ftp/files/test.txt
+sudo adduser ftpuser
+sudo mkdir /home/ftpuser/ftp
+sudo chown nobody:nogroup /home/ftpuser/ftp
+sudo chmod a-w /home/ftpuser/ftp
+sudo ls -la /home/ftpuser/ftp
+sudo mkdir /home/ftpuser/ftp/files
+sudo chown ftpuser:ftpuser /home/ftpuser/ftp/files
+sudo ls -la /home/ftpuser/ftp
+echo "vsftpd test file" | sudo tee /home/ftpuser/ftp/files/test.txt
 
 Step 4 — Configuring FTP Access
 sudo nano /etc/vsftpd.conf
@@ -43,7 +43,7 @@ pasv_max_port=50000
 userlist_enable=YES
 userlist_file=/etc/vsftpd.userlist
 userlist_deny=NO
-echo "sammy" | sudo tee -a /etc/vsftpd.userlist
+echo "ftpuser" | sudo tee -a /etc/vsftpd.userlist
 cat /etc/vsftpd.userlist
 sudo systemctl restart vsftpd
 
