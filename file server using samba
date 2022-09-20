@@ -1,0 +1,37 @@
+sudo yum install samba samba-client samba-common
+vi /etc/samba/smb.conf
+sudo smbpassword -a <username>
+sudo setsebool -P samba_enable_home_dirs on
+sudo firewall-cmd --permanent -zone=public --add-service=samba
+sudo firewall-cmd --reload
+
+-----------------------------------------
+yum install samba-client cifs-utils
+smbclient -L //10.0.0.4 -U opc 
+
+sudo mkdir /mnt/hmeshare 
+sudo mount //10.0.0.164/opc /mnt/homeshare -o username=opc
+ls -lh /mnt/homeshare
+sudo umount /mnt/homeshare
+
+
+# ADD GROUPS FILE SHARE 
+sudo mkdir /srv/shared
+sudo chmod 777  /srv/shared
+sudo chcon -t samba_share_t /srv/shared
+cd /srv/shared
+fallocate -l 50MB file1
+fallocate -l 50MB file2
+fallocate -l 50MB file3
+
+sudo vi /etc/samba/smb.conf
+
+[Sharedfolder]
+	comment = the group's shared files
+	path = /srv/shared
+	read only = NO
+	writable = yes
+	browsable =yes
+	valid users = @<group_users that allowed the share folders>
+	
+to check "testparm"
